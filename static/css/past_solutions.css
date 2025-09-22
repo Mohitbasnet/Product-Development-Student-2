@@ -1,0 +1,7 @@
+/* Past Solutions page */
+.past-hero .panel-glass { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; backdrop-filter: blur(8px) saturate(140%); }
+.past-grid .card { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.92); border: 1px solid rgba(255,255,255,0.15); }
+.past-grid .card .text-muted { color: rgba(255,255,255,0.78) !important; }
+.past-grid .card-footer { background: transparent; border-top: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.78); }
+.past-accent { height: 8px; background: linear-gradient(90deg, var(--home-steelblue), var(--home-darkslateblue)); border-radius: 8px; }
+

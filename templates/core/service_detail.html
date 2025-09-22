@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - Services - AI-Solutions{% endblock %}
+
+{% block content %}
+<section class="solution-hero position-relative py-5 py-lg-6 ai-hero on-dark">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7 text-white">
+                <nav aria-label="breadcrumb" class="mb-3">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-decoration-none text-white-50">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'core:services' %}" class="text-decoration-none text-white-50">Services</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">{{ service.title }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 fw-bold mb-2">{{ service.title }}</h1>
+                {% if service.summary %}
+                <p class="lead mb-3 text-white-75">{{ service.summary }}</p>
+                {% endif %}
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="chip">AI</span>
+                    <span class="chip">LLM</span>
+                    <span class="chip">Secure</span>
+                    <span class="chip">Scalable</span>
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg">Get Started</a>
+                    <a href="#details" class="btn btn-outline-light btn-lg">Explore Details</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-visual rounded-4 shadow-lg overflow-hidden bg-white ai-border">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid w-100 h-100 object-fit-cover">
+                    {% else %}
+                        <div class="p-5 text-center ai-visual">
+                            <i class="fas {{ service.icon }} fa-5x ai-accent mb-3"></i>
+                            <h3 class="h4 mb-0 text-dark">{{ service.title }}</h3>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shape-divider"></div>
+</section>
+
+<section id="details" class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm ai-card">
+                    <div class="card-body p-4">
+                        <h2 class="h4 mb-3">About this service</h2>
+                        <div class="text-muted">{{ service.description|linebreaks }}</div>
+                        <hr class="my-4"/>
+                        <h3 class="h5 mb-2">What you get</h3>
+                        <ul class="text-muted mb-3">
+                            <li>Discovery and solution design workshop</li>
+                            <li>Implementation plan with milestones and KPIs</li>
+                            <li>Security, governance, and compliance guidance</li>
+                            <li>Enablement: training materials and office hours</li>
+                            <li>Post‑launch monitoring and optimization</li>
+                        </ul>
+                        <a href="#testimonial" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#testimonialModal">Share your experience</a>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-1">
+                    <div class="col-md-4">
+                        <div class="metric-card text-center p-4 rounded-3 ai-border">
+                            <div class="h3 mb-1">99.9%</div>
+                            <div class="text-muted small">Reliability</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card text-center p-4 rounded-3 ai-border">
+                            <div class="h3 mb-1">x10</div>
+                            <div class="text-muted small">Productivity</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card text-center p-4 rounded-3 ai-border">
+                            <div class="h3 mb-1"><i class="fas fa-shield-alt"></i></div>
+                            <div class="text-muted small">Security</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm mt-4 ai-card">
+                    <div class="card-body p-4">
+                        <h3 class="h5 mb-3">How it works</h3>
+                        <div class="timeline">
+                            <div class="step">
+                                <span class="dot"></span>
+                                <div>
+                                    <div class="fw-semibold">1. Discovery</div>
+                                    <div class="text-muted small">Assess goals, data, and constraints.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="dot"></span>
+                                <div>
+                                    <div class="fw-semibold">2. Design</div>
+                                    <div class="text-muted small">Solution design and success metrics.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="dot"></span>
+                                <div>
+                                    <div class="fw-semibold">3. Build</div>
+                                    <div class="text-muted small">Implementation, evaluation, and hardening.</div>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <span class="dot"></span>
+                                <div>
+                                    <div class="fw-semibold">4. Launch</div>
+                                    <div class="text-muted small">Rollout, monitoring, and iteration.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm ai-card sticky-top" style="top:90px;">
+                    <div class="card-body p-4">
+                        <h3 class="h6 text-uppercase text-muted mb-3">Get in touch</h3>
+                        <p class="mb-3">Want to see how this service fits your needs?</p>
+                        <a href="{% url 'core:contact' %}" class="btn btn-outline-light w-100">Contact our team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Modal -->
+<div class="modal fade" id="testimonialModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Submit a testimonial</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">We'd love to hear about your experience with this service.</p>
+        <a href="{% url 'core:submit_testimonial' %}?service={{ service.slug }}" class="btn btn-primary w-100">Open testimonial form</a>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% if related_services %}
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-lg-5">
+        <h2 class="h4 mb-4">Related services</h2>
+        <div class="row g-4">
+            {% for item in related_services %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm ai-card">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="mb-2"><i class="fas {{ item.icon }} text-primary"></i></div>
+                        <h3 class="h6 mb-2">{{ item.title }}</h3>
+                        <p class="text-muted small mb-3">{{ item.summary|default:item.description|truncatewords:22 }}</p>
+                        <a href="{% url 'core:service_detail' item.slug %}" class="btn btn-outline-primary mt-auto">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+    
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/service_detail.css' %}">
+{% endblock %}
+
+

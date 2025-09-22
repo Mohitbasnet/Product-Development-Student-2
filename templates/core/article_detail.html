@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }} - AI-Solutions{% endblock %}
+{% load static %}
+{% block content %}
+<!-- Article Hero Section -->
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/article_detail.css' %}">{% endblock %}
+<section class="article-hero position-relative py-5 on-dark">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                {% if article.image %}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid rounded-4 shadow mb-4" style="max-height: 320px; object-fit: cover; border:1px solid rgba(255,255,255,.15);">
+                {% endif %}
+                <h1 class="display-5 fw-bold mb-2">{{ article.title }}</h1>
+                <div class="d-flex justify-content-center align-items-center gap-3 mb-2">
+                    <span class="badge bg-light text-dark px-3 py-2">By {{ article.author|default:'AI-Solutions' }}</span>
+                    <span class="text-white-75 small">{{ article.created_at|date:"M d, Y" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+</section>
+
+<!-- Article Content Section -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="article-body p-4 p-md-5">
+                    <article>
+                        {{ article.content|safe }}
+                    </article>
+                    <hr class="my-5">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small">Published on {{ article.created_at|date:"F d, Y" }}</span>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Articles Section -->
+{% if related_articles %}
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+        <h2 class="h4 fw-bold mb-4">Related Articles</h2>
+        <div class="row g-4">
+            {% for related in related_articles %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm related-card">
+                    {% if related.image %}
+                        <img src="{{ related.image.url }}" class="card-img-top" alt="{{ related.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="h6 mb-2">{{ related.title }}</h3>
+                        <p class="text-muted small mb-2">{{ related.content|truncatewords:15 }}</p>
+                        <a href="{% url 'core:article_detail' related.slug %}" class="btn btn-outline-light btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %} 

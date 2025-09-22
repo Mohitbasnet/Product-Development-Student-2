@@ -1,0 +1,10 @@
+/* Services listing page styles */
+.services-hero { margin-top: .25rem; }
+.services-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 1rem; backdrop-filter: blur(8px) saturate(140%); }
+.service-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.92); }
+.service-card .text-muted { color: rgba(255,255,255,0.78) !important; }
+.service-card .card-img-top { border-bottom: 1px solid rgba(255,255,255,0.12); }
+.service-accent { height: 10px; background: linear-gradient(90deg, var(--home-steelblue), var(--home-darkslateblue)); border-radius: 8px; }
+.service-card .btn-outline-light { border-color: rgba(255,255,255,0.8); color: #fff; }
+.service-card .btn-outline-light:hover { background: rgba(255,255,255,0.12); }
+

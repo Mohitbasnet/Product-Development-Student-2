@@ -1,0 +1,6 @@
+/* Contact page glass theme */
+.contact-hero .panel-glass { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; backdrop-filter: blur(8px) saturate(140%); }
+.contact-section .card { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.92); border:1px solid rgba(255,255,255,0.15); }
+.contact-section .text-muted { color: rgba(255,255,255,0.78) !important; }
+.map-panel .card { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); }
+

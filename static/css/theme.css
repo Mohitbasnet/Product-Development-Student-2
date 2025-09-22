@@ -1,0 +1,49 @@
+/* Global gradient background and overlays */
+body.site-bg {
+    background: linear-gradient(135deg, var(--home-black-1) 0%, var(--home-black-2) 100%);
+}
+
+/* Subtle global grid/radial accents */
+body.site-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(700px 200px at 10% 10%, rgba(132, 76, 124, 0.18), transparent),
+        radial-gradient(700px 200px at 90% 90%, rgba(94, 109, 146, 0.18), transparent),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 6px);
+    z-index: 0;
+}
+
+/* Utility surfaces */
+.panel {
+    background: rgba(255,255,255,0.92);
+    color: #0b122b;
+    border-radius: 1rem;
+}
+.panel .text-muted { color: #4b5563 !important; }
+.glass { background: rgba(10, 15, 40, 0.8); backdrop-filter: saturate(150%) blur(8px); }
+.surface-border-dark { border:1px solid rgba(255,255,255,0.15); }
+.surface-border-light { border:1px solid rgba(0,0,0,0.08); }
+
+/* Glass panel variant that matches the dark gradient */
+.panel-glass {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1rem;
+    backdrop-filter: blur(8px) saturate(140%);
+}
+.panel-glass .card { 
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.92);
+}
+.panel-glass .card .text-muted { color: rgba(255,255,255,0.75) !important; }
+
+/* Normalize headings on panels */
+.panel h1, .panel h2, .panel h3, .panel h4, .panel h5 { color: #0b122b; }
+/* On glass panels, inherit on-dark contrast */
+.panel-glass h1, .panel-glass h2, .panel-glass h3, .panel-glass h4, .panel-glass h5 { color: #fff; }
+
+

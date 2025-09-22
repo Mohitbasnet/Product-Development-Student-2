@@ -1,0 +1,9 @@
+.event-hero { background: linear-gradient(160deg, var(--home-black-1) 0%, var(--home-black-3) 60%, var(--home-black-2) 100%); color:#fff; overflow:hidden; }
+.event-hero .overlay { position:absolute; inset:0; background:
+  radial-gradient(700px 200px at 12% 12%, rgba(132,76,124,.28), transparent),
+  radial-gradient(700px 200px at 88% 88%, rgba(94,109,146,.24), transparent),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 2px, transparent 2px 6px); pointer-events:none; }
+.event-body { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.92); border-radius:.75rem; }
+.related-event-card { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.92); }
+.event-cta { background: linear-gradient(135deg, var(--home-steelblue), var(--home-darkslateblue)); }
+

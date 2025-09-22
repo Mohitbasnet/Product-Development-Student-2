@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - AI-Solutions{% endblock %}
+
+{% load static %}
+{% block content %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/about.css' %}">{% endblock %}
+<!-- About Hero Section -->
+<section class="about-hero on-dark py-4">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-2">About AI-Solutions</h1>
+                    <p class="lead mb-0 text-white-75">Transforming the future of work through innovative AI-powered solutions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="py-5 on-dark">
+    <div class="container about-section">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <img src="/static/images/about.jpg" alt="About AI-Solutions" class="img-fluid">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title">Our Mission & Vision</h2>
+                <p class="lead mb-4">We are dedicated to revolutionizing the digital employee experience through cutting-edge AI solutions.</p>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-bullseye fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Our Mission</h3>
+                                <p class="text-muted mb-0">To empower organizations with AI-driven solutions that enhance employee productivity, engagement, and satisfaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-eye fa-2x text-primary"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Our Vision</h3>
+                                <p class="text-muted mb-0">To be the global leader in AI-powered digital employee experience solutions, driving innovation and transformation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-5 on-dark">
+    <div class="container about-section">
+        <div class="panel-glass p-4 p-md-5">
+        <h2 class="text-center section-title">Our Core Values</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Innovation</h3>
+                        <p class="text-muted mb-0">Constantly pushing boundaries and exploring new possibilities in AI technology.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Collaboration</h3>
+                        <p class="text-muted mb-0">Working together to achieve common goals and deliver exceptional results.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Integrity</h3>
+                        <p class="text-muted mb-0">Maintaining the highest standards of ethics and transparency in all our operations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-line fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Excellence</h3>
+                        <p class="text-muted mb-0">Striving for excellence in everything we do, from product development to customer service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5 on-dark">
+    <div class="container about-section">
+        <h2 class="text-center section-title">Our Leadership Team</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="/static/images/team/ceo.jpg" alt="CEO" class="rounded-circle mb-4" width="150" height="150">
+                        <h3 class="h5 mb-1">John Smith</h3>
+                        <p class="text-muted mb-3">Chief Executive Officer</p>
+                        <p class="text-muted mb-4">With over 20 years of experience in AI and technology leadership.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="text-primary"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-primary"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="/static/images/team/cto.jpg" alt="CTO" class="rounded-circle mb-4" width="150" height="150">
+                        <h3 class="h5 mb-1">Sarah Johnson</h3>
+                        <p class="text-muted mb-3">Chief Technology Officer</p>
+                        <p class="text-muted mb-4">Expert in AI development and digital transformation strategies.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="text-primary"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-primary"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <img src="/static/images/team/coo.jpg" alt="COO" class="rounded-circle mb-4" width="150" height="150">
+                        <h3 class="h5 mb-1">Michael Brown</h3>
+                        <p class="text-muted mb-3">Chief Operations Officer</p>
+                        <p class="text-muted mb-4">Specialized in scaling operations and driving business growth.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#" class="text-primary"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-primary"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container stats-bar text-white">
+        <div class="row g-4 text-center">
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4">
+                    <h2 class="display-4 fw-bold mb-2">500+</h2>
+                    <p class="mb-0">Happy Clients</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4">
+                    <h2 class="display-4 fw-bold mb-2">50+</h2>
+                    <p class="mb-0">Team Members</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4">
+                    <h2 class="display-4 fw-bold mb-2">1000+</h2>
+                    <p class="mb-0">Projects Completed</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4">
+                    <h2 class="display-4 fw-bold mb-2">15+</h2>
+                    <p class="mb-0">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Ready to Transform Your Digital Employee Experience?</h2>
+                <p class="lead mb-4">Join hundreds of organizations that trust AI-Solutions for their digital transformation needs.</p>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg">Get Started Today</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

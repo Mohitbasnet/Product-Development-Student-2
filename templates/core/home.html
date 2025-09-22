@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AI-Solutions - Digital Employee Experience{% endblock %}
+
+{% block content %}
+<div class="home-ai-bg position-relative">
+<!-- AI Hero Section -->
+<section class="ai-hero position-relative py-5 py-lg-6 on-dark">
+    <div class="ai-hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8 col-xl-7 text-white">
+                <div class="mb-3">
+                    <span class="ai-chip">AI</span>
+                    <span class="ai-chip">Automation</span>
+                    <span class="ai-chip">Insights</span>
+                </div>
+                <h1 class="display-4 fw-bold mb-3">Build the AI‑Powered Workplace</h1>
+                <p class="lead text-white-75 mb-4">Launch secure, scalable AI services that elevate productivity and the employee experience across your enterprise.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg ai-cta">Get Started</a>
+                    <a href="#solutions" class="btn btn-outline-light btn-lg">Explore Services</a>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center text-white mt-5 g-3">
+            <div class="col-6 col-md-3">
+                <div class="ai-stat rounded-3 p-3">
+                    <div class="h3 mb-0">x10</div>
+                    <small class="text-white-75">Productivity</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-stat rounded-3 p-3">
+                    <div class="h3 mb-0">99.9%</div>
+                    <small class="text-white-75">Uptime</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-stat rounded-3 p-3">
+                    <div class="h3 mb-0"><i class="fas fa-lock"></i></div>
+                    <small class="text-white-75">Security First</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-stat rounded-3 p-3">
+                    <div class="h3 mb-0">24/7</div>
+                    <small class="text-white-75">Support</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ai-hero-divider"></div>
+</section>
+
+<!-- Services Section -->
+<section id="solutions" class="py-5">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5 shadow-sm on-dark">
+        <h2 class="display-6 fw-bold text-center mb-2">Our Services</h2>
+        <p class="text-center text-muted mb-5">Trusted building blocks for your AI transformation.</p>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3">
+                            <i class="fas {{ service.icon }}"></i>
+                        </div>
+                        <h3 class="h5 mb-3">{{ service.title }}</h3>
+                        {% if service.summary %}
+                        <p class="text-muted mb-3">{{ service.summary|truncatewords:20 }}</p>
+                        {% else %}
+                        <p class="text-muted mb-3">{{ service.description|truncatewords:20 }}</p>
+                        {% endif %}
+                        <a href="{% url 'core:service_detail' service.slug %}" class="btn btn-link text-primary p-0">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5 shadow-sm on-dark">
+        <h2 class="display-6 fw-bold text-center mb-5">What Our Clients Say</h2>
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if testimonial.client_image %}
+                                <img src="{{ testimonial.client_image.url }}" alt="{{ testimonial.client_name }}" class="rounded-circle me-3" width="60" height="60">
+                            {% else %}
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-user fa-2x"></i>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h3 class="h6 mb-1">{{ testimonial.client_name }}</h3>
+                                <p class="text-muted small mb-0">{{ testimonial.client_position }}</p>
+                                <p class="text-muted small mb-0">{{ testimonial.company }}</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= testimonial.rating %}
+                                    <i class="fas fa-star text-warning"></i>
+                                {% else %}
+                                    <i class="far fa-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="text-muted mb-0">{{ testimonial.testimonial }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Articles Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5 shadow-sm on-dark">
+        <h2 class="display-6 fw-bold text-center mb-5">Latest Articles</h2>
+        <div class="row g-4">
+            {% for article in articles %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    {% if article.image %}
+                        <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <h3 class="h5 mb-3">{{ article.title }}</h3>
+                        <p class="text-muted mb-3">{{ article.content|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">By {{ article.author }}</small>
+                            <a href="{% url 'core:article_detail' article.slug %}" class="btn btn-link text-primary p-0">Read More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5 shadow-sm on-dark">
+        <h2 class="display-6 fw-bold text-center mb-5">Upcoming Events</h2>
+        <div class="row g-4">
+            {% for event in events %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <h3 class="h5 mb-3">{{ event.title }}</h3>
+                        <p class="text-muted mb-3">{{ event.description|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">{{ event.date|date:"M d, Y" }} at {{ event.time }}</small>
+                            <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-link text-primary p-0">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="ai-panel p-4 p-md-5 rounded-4 shadow-sm">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-6 fw-bold mb-4">Ready to Transform Your Employee Experience?</h2>
+                    <p class="lead text-muted mb-4">Contact us today to learn how our AI solutions can help your organization thrive.</p>
+                    <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!-- Gradient wrapper end -->
+</div>
+{% endblock %} 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}

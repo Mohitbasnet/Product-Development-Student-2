@@ -1,0 +1,7 @@
+/* Testimonials page: apply glass and gradient theme */
+.testimonials-hero .panel-glass { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; backdrop-filter: blur(8px) saturate(140%); }
+.testimonials-grid .card { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.92); border:1px solid rgba(255,255,255,0.15); }
+.testimonials-grid .card .text-muted { color: rgba(255,255,255,0.78) !important; }
+.metrics-grid .card { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.92); border:1px solid rgba(255,255,255,0.14); }
+.cta-bar { background: linear-gradient(135deg, var(--home-steelblue), var(--home-darkslateblue)); }
+

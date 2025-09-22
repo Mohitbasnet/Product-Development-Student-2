@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}AI-Solutions - Events{% endblock %}
+
+{% load static %}
+{% block content %}
+<!-- Events Hero Section -->
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/events.css' %}">{% endblock %}
+<section class="events-hero on-dark py-4 text-center">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+            <h1 class="display-5 mb-2">Events</h1>
+            <p class="lead mb-0 text-white-75">Join us at our upcoming events and conferences</p>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+        <h2 class="text-center mb-5">Upcoming Events</h2>
+        <div class="row events-grid">
+            {% for event in upcoming_events %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ event.title }}</h3>
+                        <p class="card-text">{{ event.description }}</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-calendar"></i> {{ event.date|date:"F d, Y" }}</li>
+                            <li class="mb-2"><i class="fas fa-clock"></i> {{ event.time }}</li>
+                            <li class="mb-2"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</li>
+                        </ul>
+                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-primary">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+<!-- Past Events -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+        <h2 class="text-center mb-5">Past Events</h2>
+        <div class="row events-grid">
+            {% for event in past_events %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title">{{ event.title }}</h3>
+                        <p class="card-text">{{ event.description }}</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-calendar"></i> {{ event.date|date:"F d, Y" }}</li>
+                            <li class="mb-2"><i class="fas fa-clock"></i> {{ event.time }}</li>
+                            <li class="mb-2"><i class="fas fa-map-marker-alt"></i> {{ event.location }}</li>
+                        </ul>
+                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-light">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center text-muted">No past events.</div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Event Types -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5 event-types">
+        <h2 class="text-center mb-5">Types of Events</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chalkboard-teacher fa-3x mb-3 text-primary"></i>
+                        <h4>Workshops</h4>
+                        <p>Hands-on sessions to learn about our AI solutions and best practices.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                        <h4>Conferences</h4>
+                        <p>Industry events featuring expert speakers and networking opportunities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-laptop fa-3x mb-3 text-primary"></i>
+                        <h4>Webinars</h4>
+                        <p>Online sessions to learn about our solutions from anywhere in the world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 events-cta text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Can't Find What You're Looking For?</h2>
+        <p class="lead mb-4">Contact us to discuss custom events or training sessions for your organization.</p>
+        <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg">Contact Us</a>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,7 @@
+/* Gallery page glass theme */
+.gallery-hero .panel-glass { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; backdrop-filter: blur(8px) saturate(140%); }
+.gallery-grid .card { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.92); overflow:hidden; }
+.gallery-grid .card img { transition: transform .35s ease, filter .35s ease; filter: saturate(85%) contrast(105%); }
+.gallery-grid .card:hover img { transform: scale(1.05); filter: saturate(110%) contrast(110%); }
+.gallery-grid .small { color: rgba(255,255,255,0.78); }
+

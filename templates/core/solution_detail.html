@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ solution.title }} - AI-Solutions{% endblock %}
+
+{% block content %}
+<!-- Solution Hero Section -->
+<section class="solution-hero position-relative py-5 py-lg-6 on-dark">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7 text-white">
+                <nav aria-label="breadcrumb" class="mb-3">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-decoration-none text-white-50">Home</a></li>
+                        <li class="breadcrumb-item">
+                            {% if is_past %}
+                                <a href="{% url 'core:past_solutions' %}" class="text-decoration-none text-white-50">Past Solutions</a>
+                            {% else %}
+                                <a href="{% url 'core:solutions' %}" class="text-decoration-none text-white-50">Solutions</a>
+                            {% endif %}
+                        </li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">{{ solution.title }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-4 fw-bold mb-3">{{ solution.title }}</h1>
+                {% if is_past %}
+                <span class="badge bg-light text-dark me-2">Archived</span>
+                {% endif %}
+                <p class="lead mb-4 text-white-75">{{ solution.description }}</p>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="badge bg-white text-primary fw-semibold">AI-Powered</span>
+                    <span class="badge bg-white text-primary fw-semibold">Enterprise Ready</span>
+                    <span class="badge bg-white text-primary fw-semibold">Secure</span>
+                </div>
+                <div class="d-flex gap-3">
+                    {% if is_past %}
+                        <a href="{% url 'core:past_solutions' %}" class="btn btn-outline-light btn-lg">Back to Past Solutions</a>
+                    {% else %}
+                        <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg">Get Started</a>
+                        <a href="#details" class="btn btn-outline-light btn-lg">Explore Details</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-visual rounded-4 shadow-lg overflow-hidden bg-white">
+                    {% if solution.image %}
+                        <img src="{{ solution.image.url }}" alt="{{ solution.title }}" class="img-fluid w-100 h-100 object-fit-cover">
+                    {% else %}
+                        <div class="p-5 text-center">
+                            <i class="fas {{ solution.icon }} fa-5x text-primary mb-3"></i>
+                            <h3 class="h4 mb-0">{{ solution.title }}</h3>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row text-center text-white mt-5 g-3">
+            <div class="col-6 col-md-3">
+                <div class="stat-card rounded-3 p-3">
+                    <div class="h3 mb-0">99.9%</div>
+                    <small class="text-white-75">Uptime</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card rounded-3 p-3">
+                    <div class="h3 mb-0">x10</div>
+                    <small class="text-white-75">Productivity Boost</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card rounded-3 p-3">
+                    <div class="h3 mb-0"><i class="fas fa-shield-alt"></i></div>
+                    <small class="text-white-75">Enterprise Security</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card rounded-3 p-3">
+                    <div class="h3 mb-0">24/7</div>
+                    <small class="text-white-75">Global Support</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shape-divider"></div>
+</section>
+
+<!-- Features Section -->
+{% if is_past %}
+<section id="features" class="py-5 on-dark">
+    <div class="container panel-glass p-4 p-lg-5">
+{% else %}
+<section id="features" class="py-5 bg-light">
+    <div class="container">
+{% endif %}
+        <h2 class="text-center mb-4">Key Highlights</h2>
+        <p class="text-center text-muted mb-5">Built for scale, security, and outcomes.</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm {% if is_past %}related-card{% endif %}">
+                    <div class="card-body p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Fast Implementation</h3>
+                        <p class="text-muted mb-0">Get up and running quickly with our streamlined implementation process.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm {% if is_past %}related-card{% endif %}">
+                    <div class="card-body p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Enterprise Security</h3>
+                        <p class="text-muted mb-0">Your data is protected with enterprise-grade security measures.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm {% if is_past %}related-card{% endif %}">
+                    <div class="card-body p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Scalable Solution</h3>
+                        <p class="text-muted mb-0">Grow with confidence using our scalable AI-powered platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Details Section with Tabs -->
+{% if is_past %}
+<section id="details" class="py-5 on-dark">
+    <div class="container panel-glass p-4 p-lg-5">
+{% else %}
+<section id="details" class="py-5">
+    <div class="container">
+{% endif %}
+        <ul class="nav nav-pills mb-4" id="solutionTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview" type="button" role="tab">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="benefits-tab" data-bs-toggle="pill" data-bs-target="#benefits" type="button" role="tab">Benefits</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="integration-tab" data-bs-toggle="pill" data-bs-target="#integration" type="button" role="tab">Integration</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-7">
+                        <h3 class="h4 mb-3">Purpose-built to deliver outcomes</h3>
+                        <p class="text-muted">{{ solution.description }}</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Actionable AI insights</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Secure by design</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Scales across the enterprise</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Clear KPIs tied to business outcomes</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Governance, auditability and monitoring baked in</li>
+                        </ul>
+                        <a href="{% url 'core:contact' %}" class="btn btn-primary">Talk to our team</a>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="rounded-3 bg-light p-4 h-100 d-flex align-items-center justify-content-center">
+                            <i class="fas {{ solution.icon }} fa-4x text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="benefits" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">AI-Powered Insights</h4>
+                            <p class="text-muted mb-0">Get valuable insights from our advanced AI algorithms.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">24/7 Support</h4>
+                            <p class="text-muted mb-0">Round-the-clock support from our dedicated team.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">Easy Integration</h4>
+                            <p class="text-muted mb-0">Seamlessly integrate with your existing systems.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">Security & Governance</h4>
+                            <p class="text-muted mb-0">Role‑based access, audit trails, data residency and DLP.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">Lower TCO</h4>
+                            <p class="text-muted mb-0">Operational efficiency and shared platform components reduce cost.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="h-100 p-4 border rounded-3">
+                            <h4 class="h6">Faster Time‑to‑Value</h4>
+                            <p class="text-muted mb-0">Blueprints and accelerators shorten implementation cycles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="integration" role="tabpanel">
+                <div class="border rounded-3 p-4">
+                    <h4 class="h6 mb-3">Works with your stack</h4>
+                    <p class="text-muted">Our APIs and connectors simplify integration with HRIS, LMS, identity, ticketing and analytics tools. We provide reference implementations and support to accelerate time‑to‑value.</p>
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 {% if is_past %}related-card{% endif %}">
+                                <div class="fw-semibold mb-1">Connectors</div>
+                                <div class="text-muted small">Workday, SuccessFactors, ServiceNow, Jira, Okta, Azure AD, Google Workspace.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 {% if is_past %}related-card{% endif %}">
+                                <div class="fw-semibold mb-1">Tech stack</div>
+                                <div class="text-muted small">Python/Node, Django/FastAPI, PostgreSQL, Redis, Kafka, vector DBs, leading LLMs.</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 border rounded-3 {% if is_past %}related-card{% endif %}">
+                                <div class="fw-semibold mb-1">Deployment</div>
+                                <div class="text-muted small">Cloud (AWS/Azure/GCP) or on‑prem. CI/CD, observability, tracing and guardrails.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <h2 class="h3 mb-3">Frequently Asked Questions</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1c">How long does implementation take?</button>
+                        </h2>
+                        <div id="faq1c" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">Most customers launch in 2-6 weeks depending on scope and integrations.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2c">Is data secure?</button>
+                        </h2>
+                        <div id="faq2c" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">Yes. We use industry best practices for encryption, access control, and monitoring.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="cta-panel p-4 p-lg-5 rounded-4 text-white">
+                    <h3 class="h3 mb-2">Ready to get started?</h3>
+                    <p class="mb-4 text-white-75">Speak with our experts and see a tailored demo.</p>
+                    <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg">Request a Demo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!-- Related Solutions Section -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-lg-5">
+        <h2 class="display-6 fw-bold mb-4">Related Solutions</h2>
+        <div class="row g-4">
+            {% for related_solution in related_solutions %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm related-card">
+                    <div class="card-body p-4">
+                        <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3">
+                            <i class="fas {{ related_solution.icon }}"></i>
+                        </div>
+                        <h3 class="h5 mb-3">{{ related_solution.title }}</h3>
+                        <p class="text-muted mb-3">{{ related_solution.description|truncatewords:20 }}</p>
+                        <a href="{% url 'core:solution_detail' related_solution.slug %}" class="btn btn-outline-light">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/solution_detail.css' %}">
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}Articles & Insights - AI-Solutions{% endblock %}
+
+{% load static %}
+{% block content %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/articles.css' %}">{% endblock %}
+<!-- Articles Hero Section -->
+<section class="articles-hero on-dark py-4">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-2">Articles & Insights</h1>
+                    <p class="lead mb-0 text-white-75">Stay informed about the latest trends and developments in AI and digital employee experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Article Section -->
+<section class="py-5 on-dark">
+    <div class="container articles-feature">
+        {% if featured_article %}
+        <div class="card border-0 shadow-sm">
+            <div class="row g-0">
+                <div class="col-lg-6">
+                    {% if featured_article.image %}
+                    <img src="{{ featured_article.image.url }}" class="img-fluid h-100 object-fit-cover" alt="{{ featured_article.title }}">
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <small class="text-muted me-3"><i class="far fa-calendar-alt me-1"></i> {{ featured_article.created_at|date:"M d, Y" }}</small>
+                            <small class="text-muted"><i class="far fa-user me-1"></i> {{ featured_article.author }}</small>
+                        </div>
+                        <h2 class="h3 mb-3">{{ featured_article.title }}</h2>
+                        <p class="lead mb-4">{{ featured_article.content|truncatewords:30 }}</p>
+                        <a href="{% url 'core:article_detail' featured_article.slug %}" class="btn btn-outline-light">
+                            Read More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Articles Grid Section -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="row g-4 articles-grid">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    {% if article.image %}
+                    <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <small class="text-muted me-3"><i class="far fa-calendar-alt me-1"></i> {{ article.created_at|date:"M d, Y" }}</small>
+                            <small class="text-muted"><i class="far fa-user me-1"></i> {{ article.author }}</small>
+                        </div>
+                        <h3 class="h5 mb-3">{{ article.title }}</h3>
+                        <p class="text-muted mb-4">{{ article.content|truncatewords:20 }}</p>
+                        <a href="{% url 'core:article_detail' article.slug %}" class="btn btn-outline-light">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5 on-dark">
+    <div class="container">
+        <div class="panel-glass p-4 p-md-5">
+        <h2 class="text-center section-title">Browse by Category</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-robot fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">AI & Machine Learning</h3>
+                        <p class="text-muted mb-0">Latest developments in AI technology and applications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Employee Experience</h3>
+                        <p class="text-muted mb-0">Strategies for enhancing workplace engagement.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-line fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Digital Transformation</h3>
+                        <p class="text-muted mb-0">Guides for successful digital workplace initiatives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-lightbulb fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h5 mb-3">Best Practices</h3>
+                        <p class="text-muted mb-0">Tips and insights for optimal implementation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5 newsletter-bar text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Stay Updated</h2>
+                <p class="lead mb-4">Subscribe to our newsletter for the latest insights and updates.</p>
+                <form class="row g-3 justify-content-center">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control form-control-lg" placeholder="Enter your email address">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-light btn-lg w-100">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Want to Share Your Insights?</h2>
+                <p class="lead mb-4">We're always looking for industry experts to contribute to our knowledge base.</p>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

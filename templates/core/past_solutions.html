@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Past Solutions - AI-Solutions{% endblock %}
+
+{% load static %}
+{% block content %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/past_solutions.css' %}">{% endblock %}
+<div class="container mt-4 past-hero on-dark">
+    <div class="panel-glass p-4 p-md-5 mb-3">
+        <h1 class="mb-2">Past Solutions</h1>
+        <p class="text-muted mb-0">Browse our archive of past solutions and initiatives.</p>
+    </div>
+
+    {% if solutions %}
+    <div class="row g-4 past-grid">
+        {% for solution in solutions %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="past-accent mb-2"></div>
+                {% if solution.image %}
+                <img src="{{ solution.image.url }}" class="card-img-top" alt="{{ solution.title }}">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ solution.title }}</h5>
+                    <p class="card-text text-muted">{{ solution.description|truncatewords:25 }}</p>
+                    <a href="{% url 'core:solution_detail' solution.slug %}" class="btn btn-outline-light mt-auto">View Details</a>
+                </div>
+                <div class="card-footer text-muted small">
+                    Created on {{ solution.created_at|date:'M d, Y' }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No past solutions available at the moment.</div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
