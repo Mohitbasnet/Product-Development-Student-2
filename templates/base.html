@@ -231,20 +231,26 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'core:home' %}">
                 <span class="me-2" aria-hidden="true" style="display:inline-block; width:28px; height:28px;">
-                    <!-- Inline AI logo (neural chip) -->
-                    <svg viewBox="0 0 64 64" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Refined AI monogram logo -->
+                    <svg viewBox="0 0 64 64" width="28" height="28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI‑Solutions logo">
                         <defs>
-                            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#00d4ff"/>
-                                <stop offset="100%" stop-color="#7b1fff"/>
+                            <linearGradient id="logoGrad" x1="0" x2="1" y1="0" y2="1">
+                                <stop offset="0%" stop-color="var(--home-steelblue)"/>
+                                <stop offset="100%" stop-color="var(--home-darkslateblue)"/>
                             </linearGradient>
+                            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
                         </defs>
-                        <rect x="10" y="10" width="44" height="44" rx="8" ry="8" fill="none" stroke="url(#g)" stroke-width="3"/>
-                        <circle cx="24" cy="24" r="4" fill="url(#g)"/>
-                        <circle cx="40" cy="24" r="4" fill="url(#g)"/>
-                        <circle cx="24" cy="40" r="4" fill="url(#g)"/>
-                        <circle cx="40" cy="40" r="4" fill="url(#g)"/>
-                        <path d="M24 28 L24 36 M40 28 L40 36 M28 24 L36 24 M28 40 L36 40" stroke="url(#g)" stroke-width="3"/>
+                        <!-- Rounded square chip -->
+                        <rect x="8" y="8" width="48" height="48" rx="12" ry="12" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                        <!-- Stylized AI monogram -->
+                        <path d="M22 42 L28 22 L30 22 L36 42 M24.8 36 H33.2" stroke="url(#logoGrad)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
+                        <circle cx="44" cy="24" r="2.6" fill="url(#logoGrad)"/>
                     </svg>
                 </span>
                 <span class="fw-semibold">AI‑Solutions</span>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Solution, Testimonial, Article, Event, ContactInquiry
+from .models import Service, Solution, Testimonial, Article, Event, ContactInquiry, GalleryImage
 
 @admin.register(Solution)
 class SolutionAdmin(admin.ModelAdmin):
@@ -114,3 +114,10 @@ class ContactInquiryAdmin(admin.ModelAdmin):
     def mark_as_unread(self, request, queryset):
         queryset.update(is_read=False)
     mark_as_unread.short_description = "Mark selected inquiries as unread"
+
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ("label", "created_at")
+    search_fields = ("label",)
+    readonly_fields = ("created_at",)

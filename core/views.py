@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Service, Solution, Testimonial, Article, Event, ContactInquiry
+from .models import Service, Solution, Testimonial, Article, Event, ContactInquiry, GalleryImage
 from .forms import ContactForm
 from django.utils import timezone
 from django import forms
@@ -151,23 +151,8 @@ def past_solutions(request):
 
 
 def gallery(request):
-    # Aggregate images from multiple models to showcase in a unified gallery
-    solution_images = list(Solution.objects.exclude(image='').exclude(image=None).values_list('image', 'title'))
-    article_images = list(Article.objects.exclude(image='').exclude(image=None).values_list('image', 'title'))
-    event_images = list(Event.objects.exclude(image='').exclude(image=None).values_list('image', 'title'))
-    testimonial_images = list(Testimonial.objects.exclude(client_image='').exclude(client_image=None).values_list('client_image', 'client_name'))
-
-    # Normalize to a common structure: [{'url': <url>, 'label': <label>}]
-    images = []
-    for path, label in solution_images:
-        images.append({'url': path.url if hasattr(path, 'url') else path, 'label': label or 'Solution'})
-    for path, label in article_images:
-        images.append({'url': path.url if hasattr(path, 'url') else path, 'label': label or 'Article'})
-    for path, label in event_images:
-        images.append({'url': path.url if hasattr(path, 'url') else path, 'label': label or 'Event'})
-    for path, label in testimonial_images:
-        images.append({'url': path.url if hasattr(path, 'url') else path, 'label': label or 'Testimonial'})
-
+    # Use admin-managed gallery images
+    gallery_images = GalleryImage.objects.all().order_by('-created_at')
     return render(request, 'core/gallery.html', {
-        'images': images,
+        'gallery_images': gallery_images,
     })

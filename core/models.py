@@ -127,3 +127,15 @@ class ContactInquiry(models.Model):
     class Meta:
         verbose_name_plural = "Contact Inquiries"
         ordering = ['-created_at']
+
+
+class GalleryImage(models.Model):
+    label = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='gallery/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.label
+
+    class Meta:
+        ordering = ['-created_at']
