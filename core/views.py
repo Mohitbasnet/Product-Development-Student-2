@@ -4,7 +4,7 @@ from .models import Service, Solution, Testimonial, Article, Event, ContactInqui
 from .forms import ContactForm
 from django.utils import timezone
 from django import forms
-from django.db.models import Count
+from django.db.models import Count, Avg
 import logging
 
 # Configure logging
@@ -45,9 +45,14 @@ def solution_detail(request, slug):
 def service_detail(request, slug):
     service = get_object_or_404(Service, slug=slug)
     related_services = Service.objects.exclude(id=service.id)[:3]
+    testimonials = service.testimonials.all()
+    rating_stats = testimonials.aggregate(avg_rating=Avg('rating'), review_count=Count('id'))
     return render(request, 'core/service_detail.html', {
         'service': service,
         'related_services': related_services,
+        'testimonials': testimonials,
+        'avg_rating': rating_stats.get('avg_rating') or 0,
+        'review_count': rating_stats.get('review_count') or 0,
     })
 
 
@@ -95,8 +100,14 @@ def article_detail(request, slug):
     return render(request, 'core/article_detail.html', {'article': article})
 
 def testimonials(request):
-    testimonials = Testimonial.objects.all()
-    return render(request, 'core/testimonials.html', {'testimonials': testimonials})
+    base_qs = Testimonial.objects.all()
+    featured_testimonials = base_qs.order_by('-rating', '-created_at')[:3]
+    featured_ids = featured_testimonials.values_list('id', flat=True)
+    other_testimonials = base_qs.exclude(id__in=featured_ids).order_by('-created_at')
+    return render(request, 'core/testimonials.html', {
+        'testimonials': other_testimonials,
+        'featured_testimonials': featured_testimonials,
+    })
 
 def events(request):
     current_date = timezone.now().date()

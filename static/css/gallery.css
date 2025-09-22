@@ -1,7 +1,18 @@
-/* Gallery page glass theme */
 .gallery-hero .panel-glass { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; backdrop-filter: blur(8px) saturate(140%); }
 .gallery-grid .card { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.92); overflow:hidden; }
-.gallery-grid .card img { transition: transform .35s ease, filter .35s ease; filter: saturate(85%) contrast(105%); }
-.gallery-grid .card:hover img { transform: scale(1.05); filter: saturate(110%) contrast(110%); }
+.gallery-grid .media-box { position: relative; width: 100%; aspect-ratio: 1 / 1; background: rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.12); overflow: hidden; }
+.gallery-grid .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease, filter .35s ease; filter: saturate(90%) contrast(105%); }
+.gallery-grid .gallery-card:hover .media-box img { transform: scale(1.03); filter: saturate(110%) contrast(110%); }
 .gallery-grid .small { color: rgba(255,255,255,0.78); }
+/* Hover overlay */
+.gallery-grid .media-box::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35)); opacity:0; transition: opacity .25s ease; }
+.gallery-grid .gallery-card:hover .media-box::after { opacity:1; }
+.gallery-grid .media-box .zoom-icon { position:absolute; right:10px; bottom:10px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.9); color:#111; display:flex; align-items:center; justify-content:center; transform: scale(0.9); opacity:0; transition: all .2s ease; }
+.gallery-grid .gallery-card:hover .zoom-icon { transform: scale(1); opacity:1; }
+
+.modal-fullscreen .modal-content { background: rgba(0,0,0,0.9); }
+.modal-fullscreen img { max-height: 88vh; width: auto; height: auto; object-fit: contain; }
+
+/* Masonry layout */
+/* Remove masonry for uniform grid */
 

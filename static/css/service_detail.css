@@ -36,6 +36,11 @@
 .timeline .step .dot { width:10px; height:10px; background:linear-gradient(135deg, var(--home-steelblue), var(--home-darkslateblue)); border-radius:50%; position: relative; top:8px; box-shadow:0 0 0 4px rgba(255,255,255,0.10); }
 .timeline .step .fw-semibold { color:#fff; }
 
+/* Testimonials */
+.testimonial-avatar { width: 40px; height: 40px; object-fit: cover; }
+.testimonial-avatar.placeholder { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+.stars .fa-star { color: #f5b301; }
+.stars .far.fa-star { color: rgba(255,255,255,0.5); }
 /* Sidebar panel */
 .sticky-top.ai-card { border-radius: .75rem; }
 .sticky-top.ai-card .btn { box-shadow: 0 6px 16px rgba(0,0,0,0.2); }

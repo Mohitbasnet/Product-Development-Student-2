@@ -14,11 +14,16 @@
     <div class="row g-3 gallery-grid">
         {% for gi in gallery_images %}
         <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 border-0 shadow-sm">
+            <div class="card border-0 shadow-sm gallery-card">
                 {% if gi.image %}
-                <img src="{{ gi.image.url }}" class="card-img-top" alt="{{ gi.label }}">
+                <a href="{{ gi.image.url }}" class="gallery-item" data-index="{{ forloop.counter0 }}" data-label="{{ gi.label }}" role="button" aria-label="Open image {{ gi.label }} in full view">
+                    <div class="media-box">
+                        <img src="{{ gi.image.url }}" alt="{{ gi.label }}" loading="lazy" decoding="async" sizes="(min-width:1200px) 22vw, (min-width:992px) 30vw, (min-width:576px) 45vw, 50vw">
+                        <div class="zoom-icon"><i class="fas fa-search"></i></div>
+                    </div>
+                </a>
                 {% else %}
-                <div class="card-img-top d-flex align-items-center justify-content-center" style="height:180px; background: rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.12);">
+                <div class="media-box placeholder d-flex align-items-center justify-content-center">
                     <span class="small text-muted">Image pending</span>
                 </div>
                 {% endif %}
@@ -35,4 +40,63 @@
 </div>
 {% endblock %}
 
+
+{% block extra_js %}
+<script>
+  (function(){
+    const items = Array.from(document.querySelectorAll('.gallery-item'));
+    if (!items.length) return;
+    const sources = items.map(a => ({ src: a.getAttribute('href'), label: a.dataset.label }));
+    let current = 0;
+
+    const modalEl = document.createElement('div');
+    modalEl.className = 'modal fade';
+    modalEl.id = 'lightboxModal';
+    modalEl.tabIndex = -1;
+    modalEl.innerHTML = `
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-dark">
+          <div class="modal-header border-0">
+            <h5 class="modal-title text-white" id="lightboxLabel"></h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex align-items-center justify-content-center p-0">
+            <img id="lightboxImage" class="img-fluid" alt="Preview" />
+          </div>
+          <div class="modal-footer border-0 justify-content-between">
+            <button type="button" class="btn btn-outline-light" id="lbPrev"><i class="fas fa-chevron-left me-1"></i>Prev</button>
+            <button type="button" class="btn btn-outline-light" id="lbNext">Next<i class="fas fa-chevron-right ms-1"></i></button>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(modalEl);
+
+    const bsModal = new bootstrap.Modal(modalEl);
+    const imgEl = modalEl.querySelector('#lightboxImage');
+    const labelEl = modalEl.querySelector('#lightboxLabel');
+    const prevBtn = modalEl.querySelector('#lbPrev');
+    const nextBtn = modalEl.querySelector('#lbNext');
+
+    function show(index){
+      current = (index + sources.length) % sources.length;
+      const { src, label } = sources[current];
+      imgEl.src = src; imgEl.alt = label; labelEl.textContent = label;
+      bsModal.show();
+    }
+
+    items.forEach((a, idx) => {
+      a.addEventListener('click', (e) => { e.preventDefault(); show(idx); });
+    });
+    prevBtn.addEventListener('click', () => show(current - 1));
+    nextBtn.addEventListener('click', () => show(current + 1));
+
+    modalEl.addEventListener('shown.bs.modal', () => { document.addEventListener('keydown', onKey); });
+    modalEl.addEventListener('hidden.bs.modal', () => { document.removeEventListener('keydown', onKey); });
+    function onKey(e){
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    }
+  })();
+</script>
+{% endblock %}
 

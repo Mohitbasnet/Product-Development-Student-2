@@ -12,21 +12,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Load environment variables
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-your-secret-key-here'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',') if os.getenv('DJANGO_ALLOWED_HOSTS') else []
 
 
 # Application definition
@@ -138,19 +141,16 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Login URLs
 LOGIN_URL = 'admin:login'
-# LOGIN_REDIRECT_URL = 'admin:index'
-# LOGOUT_REDIRECT_URL = 'core:home'
 
 
 JAZZMIN_SETTINGS = {
     "site_title": "AI-Solutions Admin",
     "site_header": "AI-Solutions Admin",
     "site_brand": "AI-Solutions",
-    # "site_logo": "images/ai_logo.png",  # Place your logo in static/images/
     "welcome_sign": "Welcome to AI-Solutions Admin",
     "copyright": "AI-Solutions",
     "search_model": ["core.Article", "core.Solution", "core.Event", "core.ContactInquiry"],
-    "user_avatar": "profile.avatar",  # If you have a user profile model with avatar
+    "user_avatar": "profile.avatar",
     "topmenu_links": [
         {"name": "Home", "url": "/", "permissions": ["auth.view_user"]},
         {"model": "core.Article"},
