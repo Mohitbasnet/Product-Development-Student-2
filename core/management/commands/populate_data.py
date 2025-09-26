@@ -136,7 +136,22 @@ class Command(BaseCommand):
                 'title': 'Digital Transformation in the Workplace',
                 'content': 'Learn about the key trends in digital transformation and how organizations are leveraging technology to create better workplaces.',
                 'author': 'Michael Brown',
-            }
+            },
+            {
+                'title': 'Building Responsible GenAI for the Enterprise',
+                'content': 'Enterprises adopting GenAI must balance velocity with responsibility. This guide covers data governance, retrieval augmentation, prompt hygiene, evaluation frameworks, red‑teaming, and human‑in‑the‑loop review to keep systems safe and effective at scale. We include concrete blueprints and KPIs to measure business outcomes.',
+                'author': 'Priya Kapoor',
+            },
+            {
+                'title': 'From POCs to Platform: Industrializing AI Delivery',
+                'content': 'Many teams get stuck in prototype purgatory. We outline an operating model for AI: product pods, shared MLOps, CI/CD for ML, model registry, observability, drift detection, and cost governance. Real customer stories show how to reduce time‑to‑value while improving reliability.',
+                'author': 'Diego Alvarez',
+            },
+            {
+                'title': 'Designing AI Assistants Employees Actually Use',
+                'content': 'Adoption requires trust and usability. We share design patterns for copilots: grounding, confidence overlays, clarifying questions, graceful failure, and analytics loops. Includes UI patterns, prompt architectures, and measurement techniques to drive net productivity gains.',
+                'author': 'Emily Chen',
+            },
         ]
 
         for data in articles_data:
@@ -206,7 +221,28 @@ class Command(BaseCommand):
                 'date': timezone.now() + timedelta(days=60),
                 'time': '09:00 AM - 06:00 PM',
                 'location': 'Manchester Convention Center',
-            }
+            },
+            {
+                'title': 'GenAI Platform Deep Dive',
+                'description': 'Technical deep dive on retrieval, orchestration, evaluation, and guardrails for GenAI apps. Live demos and code walkthroughs.',
+                'date': timezone.now() + timedelta(days=15),
+                'time': '01:00 PM - 04:00 PM',
+                'location': 'Berlin Tech Hub',
+            },
+            {
+                'title': 'AI Adoption Roundtable',
+                'description': 'Executive roundtable discussing change management, skills, and ROI measurement for enterprise AI programs.',
+                'date': timezone.now() - timedelta(days=10),
+                'time': '02:00 PM - 05:00 PM',
+                'location': 'Virtual Event',
+            },
+            {
+                'title': 'Secure AI Engineering Bootcamp',
+                'description': 'Hands‑on training on secure prompt design, policy enforcement, and auditability for regulated industries.',
+                'date': timezone.now() - timedelta(days=25),
+                'time': '09:30 AM - 05:30 PM',
+                'location': 'New York Innovation Lab',
+            },
         ]
 
         for data in events_data:
